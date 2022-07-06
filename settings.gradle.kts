@@ -1,0 +1,1 @@
+rootProject.name = "target-sdk-vs-rest"
