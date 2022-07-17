@@ -17,7 +17,9 @@ val target = TargetClient.create(clientConfig)
 fun Route.sdk() {
     get("/sdk") {
         var mboxRequests = ArrayList<MboxRequest>()
-        mboxRequests.add(MboxRequest().name("local").index(1))
+        val req = MboxRequest().name("local").index(1)
+        req.parameters["testParam"] = "testParamValue"
+        mboxRequests.add(req)
         val exec = ExecuteRequest()
         exec.mboxes = mboxRequests
         val request = TargetDeliveryRequest.builder()
