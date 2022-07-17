@@ -36,6 +36,9 @@ val payload = object {
             object {
                 val name = "local"
                 val index = 1
+                val parameters = object {
+                    val testParam = "testParamValue"
+                }
             })
     }
 }
