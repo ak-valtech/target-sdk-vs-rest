@@ -45,8 +45,16 @@ val payload = object {
     }
     val id = object {
         val tntId = targetUserId
-        // val marketingCloudVisitorId = "The MID from the sdk" // this is needed to connect Analytics and Target
         val thirdPartyId = targetingId
+        // val marketingCloudVisitorId = "The MID from the sdk" // this is needed to connect Analytics and Target
+        val customerIds = arrayListOf(
+            object {
+                val id = targetingId
+                val integrationCode = "Adobe Target"
+                val authenticatedState = "authenticated"
+                val type = "DS"
+            }
+        )
     }
 }
 

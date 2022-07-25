@@ -31,6 +31,12 @@ fun Route.sdk() {
                 .tntId(targetUserIdSDK)
                 .thirdPartyId(targetingIdSDK)
 //                .marketingCloudVisitorId("THIS_IS_THE_MARKETING_CLOUD_ID")
+                .customerIds(
+                    arrayListOf(
+                        CustomerId().id("THIS_ID_IS_THE_CUSTOMER_ID").integrationCode("Adobe Target").authenticatedState(AuthenticatedState.AUTHENTICATED),
+                        CustomerId().id("ANOTHER_CUSTOMER_ID").integrationCode("Some other system").authenticatedState(AuthenticatedState.AUTHENTICATED)
+                    )
+                )
             )
             .execute(exec)
             .build()
