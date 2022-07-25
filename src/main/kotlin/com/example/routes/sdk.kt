@@ -14,6 +14,9 @@ val clientConfig = ClientConfig.builder()
     .build()
 val target = TargetClient.create(clientConfig)
 
+const val targetUserIdSDK = "00000000000000000000000000000000000" // retrieved from the first response where it was not set in the payload (tntId)
+const val targetingIdSDK = "123456" // external ID to associate with the user
+
 fun Route.sdk() {
     get("/sdk") {
         var mboxRequests = ArrayList<MboxRequest>()
@@ -24,6 +27,11 @@ fun Route.sdk() {
         exec.mboxes = mboxRequests
         val request = TargetDeliveryRequest.builder()
             .context(Context().channel(ChannelType.WEB))
+            .id(VisitorId()
+                .tntId(targetUserIdSDK)
+                .thirdPartyId(targetingIdSDK)
+//                .marketingCloudVisitorId("THIS_IS_THE_MARKETING_CLOUD_ID")
+            )
             .execute(exec)
             .build()
         call.respondText(target.getOffers(request).toString())

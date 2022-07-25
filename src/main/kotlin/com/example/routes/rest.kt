@@ -15,6 +15,8 @@ val gson = Gson()
 data class TargetPayload(val payload: Any)
 
 const val clientCode = "valtechsaemeapartner"
+const val targetUserId = "00000000000000000000000000000000000" // retrieved from the first response where it was not set in the payload (tntId)
+const val targetingId = "123456" // external ID to associate with the user
 const val sessionId = "11111111111111111111111111111111111"
 const val url = "https://$clientCode.tt.omtrdc.net/rest/v1/delivery?client=$clientCode&sessionId=$sessionId"
 val payload = object {
@@ -40,6 +42,11 @@ val payload = object {
                     val testParam = "testParamValue"
                 }
             })
+    }
+    val id = object {
+        val tntId = targetUserId
+        // val marketingCloudVisitorId = "The MID from the sdk" // this is needed to connect Analytics and Target
+        val thirdPartyId = targetingId
     }
 }
 
